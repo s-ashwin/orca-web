@@ -92,7 +92,7 @@ export const ActionGroupDashboard: React.FC = () => {
    * @param record
    */
   const onHandleClick = (record: any) => {
-    navigate(record.id);
+    navigate(record.id, { state: record });
   };
 
   /**

@@ -4,7 +4,7 @@ import type { ColumnsType } from "antd/es/table";
 import { Select, Input, Button } from "antd";
 import { Service } from "service";
 import { Endpoint } from "service/endpoint";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { ActionKind } from "constant/action_kind";
 import { Targets } from "constant/target";
 import { v4 as uuidv4 } from "uuid";
@@ -16,7 +16,9 @@ export const ActionGroup: React.FC = () => {
   const [dataSource, setDataSource] = useState([] as any);
   const [updateData, setupdateData] = useState({} as any);
   const [savedData, setSavedData] = useState({ data_kind: "Static" } as object);
+
   const { appId = "", actionGroupId = "" } = useParams();
+  const { state } = useLocation();
 
   interface DataType {
     key: string;
@@ -168,7 +170,7 @@ export const ActionGroup: React.FC = () => {
     <div>
       <PageHeader
         backIcon
-        title={""}
+        title={state?.name}
         extra={
           <div className="btn-footer">
             <Button type="primary" onClick={addNewRow}>
